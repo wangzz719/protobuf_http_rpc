@@ -1,0 +1,40 @@
+package test;
+
+message EchoRequest {
+    required string text = 1;
+}
+
+message EchoResponse {
+    required string text = 1;
+}
+
+message PingRequest {
+}
+
+message PingResponse {
+}
+
+message MathBinaryOperationRequest {
+    required float first = 1;
+    required float second = 2;
+}
+
+message MathResponse {
+    required float result = 1;
+}
+
+service Test {
+    rpc Ping( PingRequest ) returns( PingResponse );
+    rpc Echo( EchoRequest ) returns( EchoResponse );
+}
+
+service Math {
+    rpc Add( MathBinaryOperationRequest ) returns( MathResponse );
+    rpc Multiply( MathBinaryOperationRequest ) returns( MathResponse );
+}
+
+// This file relies on plugins to generate service code.
+option cc_generic_services = true;
+option java_generic_services = true;
+option py_generic_services = true;
+
