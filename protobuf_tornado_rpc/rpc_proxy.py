@@ -23,4 +23,5 @@ class RpcProxy(object):
         return callback.response
 
     def __getattr__(self, item):
-        return lambda request: self.call(item, request)
+        method = getattr(self._stub, item)
+        return lambda request: self.call(method, request)

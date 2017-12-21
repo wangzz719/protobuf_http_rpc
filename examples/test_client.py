@@ -19,5 +19,5 @@ if __name__ == '__main__':
     client = RpcClient([Test_Stub(channel)])
     request = EchoRequest()
     request.text = "Hello World!"
-    response = client.Text.Echo(request)
-    print response
+    response = client.Test.Echo(request)
+    print response.text

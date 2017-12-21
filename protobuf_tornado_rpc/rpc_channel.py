@@ -18,11 +18,12 @@ class RpcChannel(ProtobufRpcChannel):
         self.host = host
         self.port = port
 
-    def CallMethod(self, methodDescriptor, rpcController, request, responseClass, done=None):
-        service_name = methodDescriptor.containing_service.name
-        method_name = methodDescriptor.name
+    def CallMethod(self, method_descriptor, rpc_controller, request, response_class, done=None):
+        service_name = method_descriptor.containing_service.name
+        method_name = method_descriptor.name
         headers = {'PROTOBUF-RPC-API': '{}.{}'.format(service_name, method_name)}
         request_data = request.SerializeToString()
         req = requests.post('http://{}:{}/service'.format(self.host, self.port), data=request_data, headers=headers)
-
-        return req.content
+        response = response_class()
+        response.ParseFromString(req.content)
+        done(response)

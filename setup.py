@@ -16,6 +16,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'protobuf',
+        'requests',
         'twisted',
         'tornado'
     ],
