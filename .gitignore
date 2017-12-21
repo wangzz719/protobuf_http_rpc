@@ -1,0 +1,10 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/
+eggs/
+old-eggs/
+.DS_Store
+develop-eggs/
+*.egg-info/
+parts/
+bin/
+.installed.cfg
